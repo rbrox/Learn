@@ -1,25 +1,27 @@
 import sys
 
+# Keeps track of the current state, previous state, and action taken
 class Node():
     def __init__(self, state, parent, action):
         self.state = state
         self.parent = parent
         self.action = action
 
-
+# An object that given a state performs stck like operations
 class StackFrontier():
+    # Initialize frontier attribut of object as an empty list
     def __init__(self):
         self.frontier = []
-
+    # Add a node to the frontier
     def add(self, node):
         self.frontier.append(node)
-
+    # Check if a state is in the frontier
     def contains_state(self, state):
         return any(node.state == state for node in self.frontier)
-
+    # Status of frontier
     def empty(self):
         return len(self.frontier) == 0
-
+    # Remove a state from the frontier
     def remove(self):
         if self.empty():
             raise Exception("empty frontier")
@@ -29,8 +31,8 @@ class StackFrontier():
             return node
 
 
+# Inherits from StackFrontier, but uses a queue instead of a stack
 class QueueFrontier(StackFrontier):
-
     def remove(self):
         if self.empty():
             raise Exception("empty frontier")
@@ -42,7 +44,6 @@ class QueueFrontier(StackFrontier):
 class Maze():
 
     def __init__(self, filename):
-
         # Read file and set height and width of maze
         with open(filename) as f:
             contents = f.read()
@@ -60,6 +61,8 @@ class Maze():
 
         # Keep track of walls
         self.walls = []
+        
+        #loop through the maze
         for i in range(self.height):
             row = []
             for j in range(self.width):
