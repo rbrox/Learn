@@ -13,6 +13,7 @@ def initial_state():
     """
     Returns starting state of the board.
     """
+    
     return [[EMPTY, EMPTY, EMPTY],
             [EMPTY, EMPTY, EMPTY],
             [EMPTY, EMPTY, EMPTY]]
@@ -22,34 +23,69 @@ def player(board):
     """
     Returns player who has the next turn on a board.
     """
-    raise NotImplementedError
 
+    count = 0
+    
+    for row in range(3):
+        for col in range(3):
+            
+            ele = board[row][col]
+            if (ele == EMPTY):
+                count += 1
+    
+    if count % 2 == 1: 
+        return X
+    else:
+        return O
 
+    
 def actions(board):
     """
     Returns set of all possible actions (i, j) available on the board.
     """
-    raise NotImplementedError
+    
+    actions = []
+    
+    for row in range(3):
+        for col in range(3):
+            
+            ele = board[row][col]
+            if (ele == EMPTY):
+                actions.append(row, col)            
+    
+    
+    return actions
 
 
 def result(board, action):
     """
     Returns the board that results from making move (i, j) on the board.
     """
-    raise NotImplementedError
+    
+    ele = actions(board)
+    
+    board[action[0]][action[1]] = ele
+    
+    return board
 
 
 def winner(board):
     """
     Returns the winner of the game, if there is one.
     """
-    raise NotImplementedError
+    # 8 possible winning states
+    
+      
+    
 
 
 def terminal(board):
     """
     Returns True if game is over, False otherwise.
     """
+    
+    
+    
     raise NotImplementedError
 
 
