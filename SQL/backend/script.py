@@ -25,7 +25,7 @@ def grade_motto(motto, target_phrase):
 # Example usage
 def main():
     motto = input("Enter a motto: ")
-    target_phrase = "simple living high thinking"
+    target_phrase = input("Enter a target phrase: ")
     scores = grade_motto(motto, target_phrase)
     print("Positivity score:", scores[0])
     print("Subjectivity score:", scores[1])
